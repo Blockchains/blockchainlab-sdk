@@ -1,0 +1,14 @@
+{
+  "name": "blockchainlab-sdk",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Typed TS client for the Blockchain Lab Open Data API — installable straight from GitHub. The publishable npm package lives in ./ts. Built by Blockchain Lab — https://blockchainlab.com",
+  "type": "module",
+  "main": "ts/dist/index.js",
+  "types": "ts/dist/index.d.ts",
+  "exports": { ".": { "types": "./ts/dist/index.d.ts", "import": "./ts/dist/index.js" } },
+  "files": ["ts/dist", "ts/src"],
+  "scripts": { "prepare": "tsc -p ts", "build": "tsc -p ts", "test": "tsc -p ts && node ts/test/live.test.mjs" },
+  "devDependencies": { "typescript": "5.6.3" },
+  "license": "MIT"
+}

@@ -1,0 +1,8 @@
+node_modules
+ts/node_modules
+ts/dist
+dist
+__pycache__
+*.egg-info
+python/build
+.mypy_cache
