@@ -1,0 +1,100 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Blockchains/.github/main/docs/blocks.schema.json",
+  "schema_version": "1.0",
+  "name": "blockchainlab-sdk",
+  "repo": "Blockchains/blockchainlab-sdk",
+  "summary": "Typed TypeScript and Python clients for the Blockchain Lab Open Data API: 20 nightly-rebuilt blockchain datasets (chains, RPC health, DeFi TVL, stablecoins, yields, L2 metrics, hacks, OFAC addresses, EIPs/ERCs/BIPs, grants, hackathons).",
+  "kind": [
+    "library"
+  ],
+  "stability": "stable",
+  "version": "1.1.0",
+  "license": "MIT",
+  "homepage": "https://blockchains.github.io/blockchainlab-api/",
+  "entrypoints": [
+    {
+      "type": "npm",
+      "name": "blockchainlab-sdk",
+      "ref": "ts/src/index.ts",
+      "install": "npm i github:Blockchains/blockchainlab-sdk",
+      "exports": [
+        "BlockchainLab",
+        "DATASETS",
+        "SCHEMA_VERSION",
+        "DEFAULT_BASE",
+        "DatasetName",
+        "DatasetMap",
+        "<Dataset>Row types"
+      ]
+    },
+    {
+      "type": "pypi",
+      "name": "blockchainlab_sdk",
+      "ref": "python/blockchainlab_sdk/__init__.py",
+      "install": "pip install \"git+https://github.com/Blockchains/blockchainlab-sdk#subdirectory=python\"",
+      "exports": [
+        "BlockchainLab"
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "name": "dataset name",
+      "type": "DatasetName",
+      "description": "one of the 20 API datasets"
+    },
+    {
+      "name": "filters",
+      "type": "args",
+      "description": "symbol, chainId, chain, since, minUsd, limit, address"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "typed rows",
+      "type": "<Dataset>Row[]",
+      "description": "from the API envelope's data array"
+    },
+    {
+      "name": "envelope",
+      "type": "Envelope<T>",
+      "description": "dataset, schema_version, generated_at, source, count, data"
+    }
+  ],
+  "deps": [
+    "node>=18 (or browsers/Deno/Bun)",
+    "python>=3.9 (stdlib only)"
+  ],
+  "compatible_with": [
+    {
+      "repo": "Blockchains/blockchainlab-api",
+      "how": "the data source; the SDK types are generated from its JSON Schemas (scripts/gen.py)"
+    },
+    {
+      "repo": "Blockchains/blockchainlab-mcp",
+      "how": "same data exposed as MCP tools for AI agents; use the SDK in app code, the MCP server in agent clients"
+    },
+    {
+      "repo": "Blockchains/forge-usd-priced-membership-nft",
+      "how": "pick a healthy RPC (healthyRpcs) and screen wallets (isSanctioned) in a dApp front end around the contracts"
+    },
+    {
+      "repo": "Blockchains/grokhack-forge",
+      "how": "add SDK calls as Grok tools in a composed chat app (see Build with Blocks recipe 2)"
+    },
+    {
+      "repo": "Blockchains/blockchains.github.io",
+      "how": "the hub pages read the same API"
+    }
+  ],
+  "tests": {
+    "command": "npm test && (cd python && python -m unittest -v tests/test_live.py)",
+    "ci": ".github/workflows/ci.yml",
+    "network": true
+  },
+  "docs": {
+    "readme": "README.md",
+    "agents": "AGENTS.md",
+    "llms": "llms.txt"
+  }
+}

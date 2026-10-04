@@ -1,0 +1,27 @@
+# blockchainlab-sdk
+
+> Typed TypeScript and Python clients for the Blockchain Lab Open Data API: 20 nightly-rebuilt blockchain datasets (chains, RPC health, DeFi TVL, stablecoins, yields, L2 metrics, hacks, OFAC addresses, EIPs/ERCs/BIPs, grants, hackathons).
+
+## Docs
+
+- [README](https://raw.githubusercontent.com/Blockchains/blockchainlab-sdk/main/README.md): overview, install and the 'Use as a building block' section
+- [AGENTS.md](https://raw.githubusercontent.com/Blockchains/blockchainlab-sdk/main/AGENTS.md): setup, build/test commands, structure map, conventions and rules for AI coding agents
+- [blocks.json](https://raw.githubusercontent.com/Blockchains/blockchainlab-sdk/main/blocks.json): machine-readable building-block manifest (entrypoints, inputs, outputs, deps, compatible blocks)
+- [Open Data API catalogue](https://blockchains.github.io/blockchainlab-api/v1/index.json): dataset list with counts and schema URLs
+- [OpenAPI](https://blockchains.github.io/blockchainlab-api/openapi.yaml): OpenAPI 3.1 spec
+
+## Key files
+
+- [ts/src/index.ts](https://github.com/Blockchains/blockchainlab-sdk/blob/main/ts/src/index.ts): TypeScript client
+- [python/blockchainlab_sdk/__init__.py](https://github.com/Blockchains/blockchainlab-sdk/blob/main/python/blockchainlab_sdk/__init__.py): Python client
+- [scripts/gen.py](https://github.com/Blockchains/blockchainlab-sdk/blob/main/scripts/gen.py): type generator
+
+## Related
+
+- [Build with Blocks](https://github.com/Blockchains/.github/blob/main/docs/BUILD-WITH-BLOCKS.md): how to assemble projects from Blockchains repos
+- [Org llms.txt](https://blockchains.github.io/llms.txt) · [blocks catalogue](https://blockchains.github.io/blocks.json)
+- [Blockchains/blockchainlab-api](https://github.com/Blockchains/blockchainlab-api): the data source; the SDK types are generated from its JSON Schemas (scripts/gen.py)
+- [Blockchains/blockchainlab-mcp](https://github.com/Blockchains/blockchainlab-mcp): same data exposed as MCP tools for AI agents; use the SDK in app code, the MCP server in agent clients
+- [Blockchains/forge-usd-priced-membership-nft](https://github.com/Blockchains/forge-usd-priced-membership-nft): pick a healthy RPC (healthyRpcs) and screen wallets (isSanctioned) in a dApp front end around the contracts
+- [Blockchains/grokhack-forge](https://github.com/Blockchains/grokhack-forge): add SDK calls as Grok tools in a composed chat app (see Build with Blocks recipe 2)
+- [Blockchains/blockchains.github.io](https://github.com/Blockchains/blockchains.github.io): the hub pages read the same API

@@ -53,6 +53,50 @@ SDK version tracks the API `schema_version` (1.1.x ↔ API schema 1.1). The clie
 
 MIT. Data belongs to each named source — attribute the source and Blockchain Lab.
 
+<!-- blocks:start -->
+## Use as a building block
+
+> **For AI agents and builders:** read [`AGENTS.md`](AGENTS.md) (setup, commands, structure, rules), [`llms.txt`](llms.txt) (doc map) and the machine-readable [`blocks.json`](blocks.json) ([schema](https://github.com/Blockchains/.github/blob/main/docs/BLOCKS-SCHEMA.md)). How all Blockchains blocks fit together: **[Build with Blocks](https://github.com/Blockchains/.github/blob/main/docs/BUILD-WITH-BLOCKS.md)** · org catalogue: [https://blockchains.github.io/blocks.json](https://blockchains.github.io/blocks.json).
+
+**What it exports**
+
+| Export | Type | Install / access |
+|---|---|---|
+| `blockchainlab-sdk` | npm | `npm i github:Blockchains/blockchainlab-sdk` |
+| `blockchainlab_sdk` | pypi | `pip install "git+https://github.com/Blockchains/blockchainlab-sdk#subdirectory=python"` |
+
+`blockchainlab-sdk` exports: `BlockchainLab`, `DATASETS`, `SCHEMA_VERSION`, `DEFAULT_BASE`, `DatasetName`, `DatasetMap`, `<Dataset>Row types`
+
+`blockchainlab_sdk` exports: `BlockchainLab`
+
+**Minimal example** (run on 2026-10-04 with Node 20 after `npm i github:Blockchains/blockchainlab-sdk`)
+
+```ts
+import { BlockchainLab } from "blockchainlab-sdk";
+const bl = new BlockchainLab();                       // no API key
+const usdc = await bl.stablecoin("USDC");             // StablecoinsRow | null
+const [fastest] = await bl.healthyRpcs("ethereum");   // RpcHealthRow, sorted by latency
+const base = await bl.chain(8453);                    // ChainsRow (RPCs, explorers, currency)
+const flagged = await bl.isSanctioned("0x0000000000000000000000000000000000000000"); // false
+console.log(usdc?.circulating, fastest?.url, base?.name, flagged);
+```
+
+**Inputs → outputs**
+
+- In: `dataset name` (DatasetName) one of the 20 API datasets; `filters` (args) symbol, chainId, chain, since, minUsd, limit, address
+- Out: `typed rows` (<Dataset>Row[]) from the API envelope's data array; `envelope` (Envelope<T>) dataset, schema_version, generated_at, source, count, data
+
+**Composes with**
+
+- [Blockchains/blockchainlab-api](https://github.com/Blockchains/blockchainlab-api): the data source; the SDK types are generated from its JSON Schemas (scripts/gen.py)
+- [Blockchains/blockchainlab-mcp](https://github.com/Blockchains/blockchainlab-mcp): same data exposed as MCP tools for AI agents; use the SDK in app code, the MCP server in agent clients
+- [Blockchains/forge-usd-priced-membership-nft](https://github.com/Blockchains/forge-usd-priced-membership-nft): pick a healthy RPC (healthyRpcs) and screen wallets (isSanctioned) in a dApp front end around the contracts
+- [Blockchains/grokhack-forge](https://github.com/Blockchains/grokhack-forge): add SDK calls as Grok tools in a composed chat app (see Build with Blocks recipe 2)
+- [Blockchains/blockchains.github.io](https://github.com/Blockchains/blockchains.github.io): the hub pages read the same API
+
+**Versioning & stability:** `stable`. SDK version tracks the API `schema_version` (1.1.x ↔ schema 1.1); the client warns when the server's schema major differs. Releases are `v*` tags (npm tarball + wheel attached to the GitHub Release); not yet on the npm/PyPI registries, so install from GitHub and pin a tag or commit (`#v1.1.0`).
+<!-- blocks:end -->
+
 ## Configuration
 
 No API key. Client options:
