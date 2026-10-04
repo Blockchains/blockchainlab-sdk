@@ -9,6 +9,6 @@
   "exports": { ".": { "types": "./ts/dist/index.d.ts", "import": "./ts/dist/index.js" } },
   "files": ["ts/dist", "ts/src"],
   "scripts": { "prepare": "tsc -p ts", "build": "tsc -p ts", "test": "tsc -p ts && node ts/test/live.test.mjs" },
-  "devDependencies": { "typescript": "5.6.3" },
+  "devDependencies": { "typescript": "7.0.2" },
   "license": "MIT"
 }
