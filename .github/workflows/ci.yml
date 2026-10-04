@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy: { matrix: { node: [18, 20, 22] } }
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with: { node-version: "${{ matrix.node }}" }
       - run: npm ci || npm install --no-audit --no-fund
       - run: npm test
@@ -19,8 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy: { matrix: { python: ["3.9", "3.11", "3.13"] } }
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with: { python-version: "${{ matrix.python }}" }
       - run: pip install mypy==1.13.0 ./python
       - run: cd python && mypy blockchainlab_sdk --ignore-missing-imports
@@ -28,13 +28,13 @@ jobs:
   types-in-sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Regenerate types from the live JSON Schemas; fail if they drifted
         run: python3 scripts/gen.py && git diff --stat --exit-code
   install-from-github:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with: { node-version: 20 }
       - name: npm install github:Blockchains/blockchainlab-sdk in a clean project
         run: |
