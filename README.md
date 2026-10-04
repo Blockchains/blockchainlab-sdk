@@ -52,3 +52,25 @@ SDK version tracks the API `schema_version` (1.1.x ↔ API schema 1.1). The clie
 [Blockchain Lab hub](https://blockchains.github.io/) · [Tools (26)](https://blockchains.github.io/blockchainlab-tools/) · [MCP server](https://github.com/Blockchains/blockchainlab-mcp) · [Labs](https://github.com/Blockchains/blockchainlab-labs)
 
 MIT. Data belongs to each named source — attribute the source and Blockchain Lab.
+
+## Configuration
+
+No API key. Client options:
+
+| TypeScript (`new BlockchainLab({...})`) | Python (`BlockchainLab(...)`) | Default |
+|---|---|---|
+| `baseUrl` | `base_url` | `https://blockchains.github.io/blockchainlab-api` |
+| `cacheTtlMs` | `cache_ttl` (seconds) | 10 min / 600 s |
+| `timeoutMs` | `timeout` (seconds) | 20 s / 30 s |
+| `fetch` | — | `globalThis.fetch` |
+
+## Licence
+
+MIT, see [LICENSE](LICENSE).
+
+## Contributing
+
+Issues and pull requests are welcome. Please read the [contributing guide](https://github.com/Blockchains/.github/blob/main/CONTRIBUTING.md), [code of conduct](https://github.com/Blockchains/.github/blob/main/CODE_OF_CONDUCT.md) and [security policy](https://github.com/Blockchains/.github/blob/main/SECURITY.md) first.
+
+---
+Built by Blockchain Lab — [blockchainlab.com](https://blockchainlab.com/?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-sdk)
